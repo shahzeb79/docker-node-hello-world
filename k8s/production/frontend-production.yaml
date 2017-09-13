@@ -1,0 +1,29 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: gceme-frontend-production
+spec:
+  replicas:
+  template:
+    metadata:
+      name: frontend
+      labels:
+        app: gceme
+        role: frontend
+        env: production
+    spec:
+      containers:
+      - name: frontend
+        image: shahzeb799/nodehello:latest
+        resources:
+          limits:
+            memory: "500Mi"
+            cpu: "100m"
+        imagePullPolicy: Always
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 4000
+        ports:
+        - name: frontend
+          containerPort: 4000
