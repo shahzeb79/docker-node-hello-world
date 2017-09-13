@@ -14,6 +14,7 @@ node {
 
   stage 'Run Go tests'
   sh("docker run ${imageTag}")
+  sh("killall node")
 
   stage 'Push image to registry'
   sh("docker push ${imageTag}")
