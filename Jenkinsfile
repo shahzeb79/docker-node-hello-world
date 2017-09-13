@@ -14,4 +14,14 @@ node {
 
   stage 'Push image to registry'
   sh("docker push ${imageTag}")
+  
+  stage "Deploy Application"
+  switch (env.BRANCH_NAME) {
+    case "master":
+        // Change deployed image in canary to the one we just built
+        sh("kubectl --namespace=production apply -f k8s/services/")
+        sh("kubectl --namespace=production apply -f k8s/production/")
+        sh("echo http://`kubectl --namespace=production get service/${feSvcName} --output=json | jq -r '.status.loadBalancer.ingress[0].ip'` > ${feSvcName}")
+        break
+  }
 }
