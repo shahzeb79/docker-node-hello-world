@@ -15,14 +15,6 @@ node {
   stage 'Push image to registry'
   sh("docker push ${imageTag}")
   
-  stage "Clean Cluster"
-  switch (env.BRANCH_NAME) {
-    case "master":
-        // Change deployed image in master to the one we just built
-        sh("kubectl delete deployment gceme-frontend-production --namespace production")
-        sh("kubectl delete svc gceme-frontend --namespace production")
-        break
-  }
   stage "Deploy Application"
   switch (env.BRANCH_NAME) {
     case "master":
