@@ -1,7 +1,7 @@
 Basic Express Site
 ==================
 
-Source code example for [A simple website in node.js with express, jade and stylus](http://www.clock.co.uk/blog/a-simple-website-in-nodejs-with-express-jade-and-stylus) article.
+Source code example for [A simple website in node.js with express, jade and stylus]
 
 Build
 -----
@@ -23,4 +23,4 @@ Run this command in console:
 node app.js
 ```
 
-Open `http://localhost:3000` to access basic Express Site.
+Open `http://localhost:4000` to access basic Express Site.
