@@ -29,7 +29,7 @@ node {
         // Change deployed image in canary to the one we just built
         sh("kubectl --namespace=production apply -f k8s/services/")
         sh("kubectl --namespace=production apply -f k8s/production/")
-        sh("echo http://`kubectl --namespace=production get service/gceme-frontend --output=json | jq -r '.status.loadBalancer.ingress[0].ip'` > ${feSvcName}")
+        sh("echo Application is excesible on: http://`kubectl --namespace=production get service/gceme-frontend --output=json | jq -r '.status.loadBalancer.ingress[0].ip'` > ${feSvcName}")
         break
   }
 }
